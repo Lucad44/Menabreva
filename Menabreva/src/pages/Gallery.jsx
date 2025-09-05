@@ -4,8 +4,7 @@ const Gallery = () => {
   return (
     <div className="gallery-page">
       <div className="page-header">
-        <h1>Action Gallery</h1>
-        <p>Experience the thrill through our students' moments</p>
+        <h1>Galleria Immagini</h1>
       </div>
 
       <div className="gallery-grid">
@@ -39,9 +38,9 @@ const Gallery = () => {
       </div>
 
       <div className="gallery-cta">
-        <h2>Ready to Create Your Own Moments?</h2>
-        <p>Join us for an unforgettable kitesurfing experience</p>
-        <button className="cta-button">Book Your Course Now</button>
+        <h2>Pronto a creare dei fantastici ricordi?</h2>
+        <p>Unisciti a noi per un'indimenticabile esperienza di kitesurf</p><br></br>
+        <button className="cta-button">Prenota un corso adesso</button>
       </div>
     </div>
   );

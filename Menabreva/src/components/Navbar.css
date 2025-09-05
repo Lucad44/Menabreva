@@ -1,43 +1,79 @@
 .navbar {
-  background-color: #1a1a1a;
+  background-color: #111;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   position: sticky;
   top: 0;
   z-index: 999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
 }
 
 .nav-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 80px;
   max-width: 1300px;
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 40px;
+  gap: 24px;
 }
 
+/* Logo link container */
 .nav-logo {
-  color: #fff;
-  justify-self: start;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  font-size: 2rem;
-  font-weight: bold;
+  cursor: pointer;
+  margin-right: 8px;
 }
 
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between image and text */
+}
+
+.nav-logo-image {
+  height: 56px; /* controls logo size */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px; /* optional rounded corners */
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}
+
+.nav-logo:hover .nav-logo-image {
+  transform: translateY(-2px) scale(1.03);
+  opacity: 0.98;
+}
+
+.nav-logo-text {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+
+/* If you want a two-line stacked label, you can change the markup or use this class:
+.nav-logo-text small { display:block; font-weight:500; font-size:0.85rem; opacity:0.9; }
+*/
+
+/* Menu */
 .nav-menu {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-gap: 10px;
+  display: flex;
+  gap: 18px;
   list-style: none;
-  text-align: center;
-  width: 70vw;
-  justify-content: end;
+  align-items: center;
+  margin-left: auto; /* push the menu to the right */
+  padding: 0;
 }
 
 .nav-item {
@@ -47,12 +83,31 @@
 }
 
 .nav-link {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: all 0.3s ease;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+  font-weight: 600;
 }
 
 .nav-link:hover {
-  color: #0099cc;
+  color: #00bcd4;
+  background: rgba(255,255,255,0.03);
+  transform: translateY(-2px);
+}
+
+/* Make navbar responsive */
+@media (max-width: 900px) {
+  .nav-container { padding: 0 18px; }
+  .nav-logo-image { height: 48px; }
+  .nav-logo-text { font-size: 1rem; }
+  .nav-link { padding: 0.45rem 0.7rem; font-size: 0.95rem; }
+  .nav-menu { gap: 12px; }
+}
+
+@media (max-width: 640px) {
+  /* On very small screens, hide the menu and optionally shorten the brand text */
+  .nav-menu { display: none; }
+  .nav-logo-text { display: none; }
 }
