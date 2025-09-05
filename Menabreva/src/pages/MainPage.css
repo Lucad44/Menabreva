@@ -49,29 +49,47 @@ html { scroll-behavior: smooth; }
 .hero-content{
   position: relative;
   z-index: 4;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1200px;        /* allow the text to grow on wide screens */
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* horizontal centering */
+  justify-content: center;  /* vertical centering inside the hero */
+  text-align: center;
+  gap: 0.6rem;
 }
 
+/* MUCH bigger, readable headline */
 .hero-content h1 {
-  font-size: clamp(2.6rem, 6.3vw, 4.6rem);
-  margin-bottom: 1rem;
+  /* very large but responsive:
+     - min 3.8rem for small screens
+     - scales with viewport at 12vw
+     - caps at 10rem on very large screens */
+  font-size: clamp(3.8rem, 12vw, 10rem);
+  line-height: 0.95;        /* tight line height for a strong hero look */
+  margin: 0 0 0.6rem;
   font-weight: 900;
   letter-spacing: -1px;
-  background: linear-gradient(45deg, #ffffff, #e0f2ff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: glow 3s ease-in-out infinite alternate;
+  /* make the text opaque white for maximum contrast when super-large */
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  /* clearer, stronger shadow for legibility over busy images */
+  text-shadow: 0 12px 40px rgba(2,6,23,0.65);
+  padding: 0 1rem;          /* small horizontal padding to prevent edge cut-off */
+  word-break: break-word;   /* allow wrapping if necessary on narrow screens */
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Bigger, more readable subtitle */
 .hero-content p{
-  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  font-size: clamp(1.15rem, 2.8vw, 2rem);
   margin-bottom: 1.25rem;
-  font-weight: 300;
-  text-shadow: 0 6px 18px rgba(3,10,22,0.45);
+  font-weight: 500;
+  max-width: 920px;         /* keep the line-length comfortable */
+  text-shadow: 0 8px 28px rgba(2,6,23,0.55);
+  padding: 0 1rem;
 }
-
 .cta-button{
   background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
   color: white;
