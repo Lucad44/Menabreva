@@ -1,31 +1,29 @@
-:root{
-  --navy: #02386F;
-  --sea: #57C5B6;
-  --sand: #F4EBD9;
-  --coral: #FF6B6B;
-  --muted: #6b6b6b;
-}
+/* Scoped variables (only for Accommodation page) */
+.accommodation-page {
+  --accommodation-navy: #02386F;
+  --accommodation-sea: #57C5B6;
+  --accommodation-sand: #F4EBD9;
+  --accommodation-coral: #FF6B6B;
+  --accommodation-muted: #6b6b6b;
 
-/* Page */
-.accommodation-page{
-  background: linear-gradient(180deg, var(--sand) 0%, #fff 60%);
+  background: linear-gradient(180deg, var(--accommodation-sand) 0%, #fff 60%);
   min-height: 100vh;
   padding: 40px 20px;
   color: #14213d;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-.content-container{
+.accommodation-content-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ---------- GALLERY (NEW) ---------- */
-.gallery-section.top{
+/* ---------- GALLERY ---------- */
+.accommodation-gallery-section.accommodation-top {
   margin-bottom: 40px;
 }
 
-.gallery-container{
+.accommodation-gallery-container {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
   gap: 18px;
@@ -34,19 +32,19 @@
   box-shadow: 0 12px 30px rgba(2,24,54,0.08);
 }
 
-.gallery-left{
+.accommodation-gallery-left {
   position: relative;
   min-height: 420px;
 }
 
-.gallery-left img{
+.accommodation-gallery-left img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.gallery-caption{
+.accommodation-gallery-caption {
   position: absolute;
   left: 18px;
   bottom: 18px;
@@ -56,27 +54,27 @@
   border-radius: 8px;
 }
 
-.gallery-right{
+.accommodation-gallery-right {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.small-grid{
+.accommodation-small-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
   height: 100%;
 }
 
-.small-item{
+.accommodation-small-item {
   position: relative;
   min-height: 200px;
   overflow: hidden;
   border-radius: 10px;
 }
 
-.small-item img{
+.accommodation-small-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -84,9 +82,9 @@
   transition: transform .35s ease;
 }
 
-.small-item:hover img{ transform: scale(1.06); }
+.accommodation-small-item:hover img { transform: scale(1.06); }
 
-.small-overlay{
+.accommodation-small-overlay {
   position: absolute;
   left: 0; right: 0; bottom: 0;
   padding: 10px;
@@ -98,38 +96,38 @@
   font-weight:700;
 }
 
-.small-item.more .see-more{
+.accommodation-small-item.accommodation-more .accommodation-see-more {
   background: linear-gradient(transparent, rgba(2,24,54,0.85));
 }
 
 /* ---------- INTRO ---------- */
-.intro-section{
+.accommodation-intro-section {
   text-align: center;
   margin: 36px 0 48px;
 }
 
-.intro-section h2{
+.accommodation-intro-section h2 {
   font-size: 2rem;
-  color: var(--navy);
+  color: var(--accommodation-navy);
   margin-bottom: 12px;
 }
 
-.intro-section p{
-  color: var(--muted);
+.accommodation-intro-section p {
+  color: var(--accommodation-muted);
   max-width: 780px;
   margin: 0 auto;
   line-height: 1.7;
 }
 
 /* ---------- SERVICES ---------- */
-.services-grid{
+.accommodation-services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 28px;
   margin-bottom: 48px;
 }
 
-.service-card{
+.accommodation-service-card {
   background: white;
   border-radius: 14px;
   overflow: hidden;
@@ -137,19 +135,19 @@
   border: 1px solid rgba(2,24,54,0.03);
 }
 
-.service-header{
-  background: linear-gradient(90deg, var(--navy), var(--sea));
+.accommodation-service-header {
+  background: linear-gradient(90deg, var(--accommodation-navy), var(--accommodation-sea));
   color: white;
   padding: 22px;
   text-align: center;
 }
 
-.service-icon{ font-size: 2.4rem; display:block; margin-bottom:8px; }
+.accommodation-service-icon { font-size: 2.4rem; display:block; margin-bottom:8px; }
 
-.service-content{ padding: 20px; color: var(--muted); line-height:1.6 }
+.accommodation-service-content { padding: 20px; color: var(--accommodation-muted); line-height:1.6 }
 
-/* ---------- FEATURES (balanced) ---------- */
-.features-section{
+/* ---------- FEATURES ---------- */
+.accommodation-features-section {
   background: white;
   border-radius: 12px;
   padding: 28px;
@@ -157,17 +155,23 @@
   box-shadow: 0 8px 26px rgba(2,24,54,0.05);
 }
 
-.features-section h2{ text-align:center; color:var(--navy); margin-bottom: 20px; }
 
-.features-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* force 3 columns on larger screens to make rows even */
-  gap: 20px;
-  align-items: stretch;
-  grid-auto-rows: 1fr; /* make each row equal height */
+.accommodation-features-section h2 {
+  text-align:center; 
+  color:var(--accommodation-navy);
+  margin-bottom: 20px;
+  font-size: 40px; 
 }
 
-.feature-card{
+.accommodation-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+
+.accommodation-feature-card {
   background: linear-gradient(180deg,#ffffff, #fbfbfd);
   border-radius: 10px;
   padding: 20px;
@@ -179,24 +183,24 @@
   height:100%;
 }
 
-.feature-icon{ font-size:1.9rem; color:var(--sea); margin-bottom: 10px; }
+.accommodation-feature-icon { font-size:1.9rem; color:var(--accommodation-sea); margin-bottom: 10px; }
 
-.feature-card h3{ color:var(--navy); margin-bottom:8px }
+.accommodation-feature-card h3 { color:var(--accommodation-navy); margin-bottom:8px }
 
-.feature-card p{ color:var(--muted); line-height:1.5 }
+.accommodation-feature-card p { color:var(--accommodation-muted); line-height:1.5 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px){
-  .gallery-container{ grid-template-columns: 1fr; }
-  .gallery-right{ order: 2; }
-  .gallery-left{ order: 1; min-height: 320px }
+  .accommodation-gallery-container{ grid-template-columns: 1fr; }
+  .accommodation-gallery-right{ order: 2; }
+  .accommodation-gallery-left{ order: 1; min-height: 320px }
 
-  .services-grid{ grid-template-columns: 1fr; }
-  .features-grid{ grid-template-columns: repeat(2, 1fr); }
+  .accommodation-services-grid{ grid-template-columns: 1fr; }
+  .accommodation-features-grid{ grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px){
   .accommodation-page{ padding: 20px 14px; }
-  .small-grid{ grid-template-columns: 1fr 1fr; }
-  .features-grid{ grid-template-columns: 1fr; }
+  .accommodation-small-grid{ grid-template-columns: 1fr 1fr; }
+  .accommodation-features-grid{ grid-template-columns: 1fr; }
 }

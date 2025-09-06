@@ -19,7 +19,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simula invio (la logica reale lato server resta a te)
     if (!form.name || !form.email || !form.message) {
       setStatus("error");
       setTimeout(() => setStatus(null), 4000);
@@ -30,14 +29,12 @@ const Contact = () => {
     setTimeout(() => setStatus(null), 4000);
   };
 
-  // Coordinate centro Dorio (lat,lon) prese come riferimento: 46.100, 9.317
   const osmEmbedSrc =
     "https://www.openstreetmap.org/export/embed.html?bbox=9.307%2C46.090%2C9.327%2C46.110&layer=mapnik&marker=46.100%2C9.317";
   const osmLink = "https://maps.app.goo.gl/RauA7tAwagsb8Mkm6";
 
   return (
     <div className="contact-page">
-
       <main className="main-grid">
         <section className="info-panel" aria-labelledby="info-title">
           <h2 id="info-title">Informazioni</h2>
