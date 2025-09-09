@@ -1,10 +1,4 @@
-:root{
-  /* keep an optional navbar height if your app uses one; default to 0 */
-  --navbar-height: 0px;
-}
-
-/* PAGE shell -------------------------------------------------------------- */
-.courses-page{
+.courses-page {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh; /* ensure full viewport */
@@ -98,9 +92,9 @@
 
 /* card content typography -----------------------------------------------*/
 .courses-top-row{ display:flex; align-items:center; justify-content:flex-start; gap:12px; }
-.courses-card-body h2{ margin:0 0 6px 0; font-size:1.9rem; font-weight:800; color:#ffffff; }
-.courses-lead{ color: rgba(230,246,255,0.95); margin-bottom:8px; font-size:1.04rem; }
-.courses-card-body ul{ margin:10px 0 14px 18px; color: rgba(235,245,250,0.95); line-height:1.6; font-size:1rem; }
+.courses-card-body h2{ margin:0 0 6px 0; font-size:3.2rem; font-weight:800; color:#ffffff; }
+.courses-lead{ color: rgba(230,246,255,0.95); margin-bottom:8px; font-size:1.7rem; }
+.courses-card-body ul{ margin:10px 0 14px 18px; color: rgba(235,245,250,0.95); line-height:1.6; font-size:1.5rem; }
 .courses-card-body li{ margin-bottom:8px; }
 
 /* actions */

@@ -85,11 +85,18 @@
 .nav-link {
   color: #ffffff;
   text-decoration: none;
-  padding: 0.5rem 0.9rem;
-  border-radius: 6px;
-  transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+  display: inline-block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent; /* reserve space to avoid layout jump */
+  transition: border-color 0.15s ease;
+}
+
+.nav-link.active {
+  border-bottom-color: red;
   font-weight: 600;
 }
+
 
 .nav-link:hover {
   color: #00bcd4;
