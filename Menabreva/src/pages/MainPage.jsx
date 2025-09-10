@@ -28,13 +28,6 @@ const MainPage = () => {
     }
   };
 
-  const handleScrollDown = () => {
-    if (aboutRef.current) {
-      const y = aboutRef.current.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
-    }
-  };
-
   const handleKeyDown = (e, fn) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -88,62 +81,83 @@ const MainPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section style={styles.features}>
-        <div style={styles.container}>
-          <div style={styles.featuresGrid} className="features-grid">
-            <div style={styles.featureCard} className="feature-card">
-              <div style={styles.featureImageWrapper}>
-                <img src={IstruttoreRadio} alt="Professional Instructors" style={styles.featureImage} />
+      {/* Intro Section (under hero) */}
+      <section className="intro-section" aria-label="Intro descrizione soggiorno">
+        <div className="intro-container">
+          <p className="intro-text">
+            Un soggiorno pensato per chi ama il vento:&nbsp;
+            <span className="intro-highlight">lezioni con istruttori qualificati</span>,&nbsp;
+            <span className="intro-highlight">uscita giornaliera agli spot migliori</span> e&nbsp;
+            <span className="intro-highlight">relax in un alloggio</span> comodo e vicinissimo al lago.
+          </p>
+        </div>
+      </section>
+
+      {/* Services / Features Section (cards updated to 'services' style, images made much larger) */}
+      <section className="services-section" aria-label="Servizi e caratteristiche">
+        <div className="services-container">
+          <div className="services-header">
+            <div className="services-label">Perché scegliere Menabreva</div>
+            <h2 className="services-title">Cosa offriamo</h2>
+          </div>
+
+          <div className="services-grid">
+            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
+              <div className="service-image-wrapper">
+                <img src={IstruttoreRadio} alt="Professional Instructors" className="service-image" />
               </div>
-              <h3 style={styles.featureTitle}>Istruttori esperti</h3>
-              <p style={styles.featureDescription}>
-                Impara da istruttori esperti con 10+ anni di esperienza
-              </p>
+              <h3 className="service-name">Istruttori esperti</h3>
+              <div className="service-tagline">Lezioni dedicate</div>
+              <p className="service-description">Impara da istruttori con anni di esperienza certificata e lezioni personalizzate per il tuo livello.</p>
             </div>
 
-            <div style={styles.featureCard} className="feature-card">
-              <div style={styles.featureImageWrapper}>
-                <img src={LagoKite} alt="Perfect Location" style={styles.featureImage} />
+            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
+              <div className="service-image-wrapper">
+                <img src={LagoKite} alt="Perfect Location" className="service-image" />
               </div>
-              <h3 style={styles.featureTitle}>Condizioni ideali</h3>
-              <p style={styles.featureDescription}>
-                Venti consistenti e onde perfette tutto l'anno
-              </p>
+              <h3 className="service-name">Condizioni ideali</h3>
+              <div className="service-tagline">Spot selezionati</div>
+              <p className="service-description">Venti consistenti e spot scelti giornalmente per darti la migliore esperienza in acqua.</p>
             </div>
 
-            <div style={styles.featureCard} className="feature-card">
-              <div style={styles.featureImageWrapper}>
-                <img src={Barbecue} alt="All Inclusive" style={styles.featureImage} />
+            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
+              <div className="service-image-wrapper">
+                <img src={Barbecue} alt="All Inclusive" className="service-image" />
               </div>
-              <h3 style={styles.featureTitle}>Esperienza completa</h3>
-              <p style={styles.featureDescription}>
-                Concentrati sul kite. Dormi e mangia da noi!
-              </p>
+              <h3 className="service-name">Esperienza completa</h3>
+              <div className="service-tagline">Relax e comfort</div>
+              <p className="service-description">Sistemazioni comode e attività extra per goderti il tempo libero dopo le uscite in mare.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section style={styles.about} ref={aboutRef}>
-        <div style={styles.aboutContainer}>
-          <div style={styles.aboutContent} className="about-content">
-            <div style={styles.aboutText}>
-              <h2 style={styles.aboutTitle}>
-                La tua avventura nel kitesurf comincia qui!
-              </h2>
-              <div style={styles.aboutDescription}>
-                <p style={styles.aboutParagraph}>
-                  Che tu stia muovendo i primi passi nel mondo del kitesurf o desideri padroneggiare 
-                  tecniche avanzate come l'hydrofoiling, la nostra scuola offre l'ambiente perfetto 
-                  per crescere e vivere avventure emozionanti.
-                </p>
-                <p style={styles.aboutParagraph}>
-                  Con sistemazioni confortevoli a pochi passi dalla spiaggia, ti sveglierai con il 
-                  rumore delle onde e sarai in acqua in pochi minuti.
-                </p>
-              </div>
+      {/* About / Previous Section (the title "La tua avventura..." styled as requested) */}
+      <section className="previous-section" ref={aboutRef} aria-label="About kitesurf">
+        <div className="previous-decoration" aria-hidden></div>
+        <div className="previous-container">
+          <div className="previous-header">
+            <div className="previous-label">Inizia oggi</div>
+            <h2 className="previous-title">La tua avventura nel kitesurf comincia qui!</h2>
+          </div>
+
+          <div className="previous-content">
+            <div className="previous-text">
+              <p>
+                Che tu stia muovendo i primi passi nel mondo del kitesurf o desideri padroneggiare 
+                tecniche avanzate come l'hydrofoiling, la nostra scuola offre l'ambiente perfetto 
+                per crescere e vivere avventure emozionanti.
+              </p>
+              <p>
+                Con sistemazioni confortevoli a pochi passi dalla spiaggia, ti sveglierai con il 
+                rumore delle onde e sarai in acqua in pochi minuti.
+              </p>
+
+              <ul className="previous-list">
+                <li><strong>Attrezzatura inclusa</strong> — Materiale manutenzionato e aggiornato.</li>
+                <li><strong>Gruppi ridotti</strong> — Massima attenzione dalla tua guida-instruttore.</li>
+                <li><strong>Trasferimenti giornalieri</strong> — Andiamo dove il vento è migliore.</li>
+              </ul>
 
               <div style={styles.actionButtons} className="action-buttons">
                 <Link to="/courses" style={styles.primaryButton} className="primary-button">
@@ -155,7 +169,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div style={styles.aboutImageWrapper}>
+            <div>
               <div style={styles.aboutImageContainer} className="about-image-container">
                 <img src={Villaggio} alt="Kitesurfing action" style={styles.aboutImage} />
               </div>
@@ -163,6 +177,7 @@ const MainPage = () => {
           </div>
         </div>
       </section>
+
     </div>
   );
 };
@@ -325,111 +340,21 @@ const styles = {
     animation: 'scroll 2s infinite',
   },
   
-  features: {
-    padding: '110px 0',
-    backgroundColor: '#fafbfc',
-  },
-  
-  featuresGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '36px',
-    maxWidth: '1800px',
-    margin: '0 auto',
-    padding: '0 24px',
-  },
-  
-  featureCard: {
-    backgroundColor: 'white',
-    borderRadius: '16px',
-    padding: '48px 28px 28px 28px', // slightly larger card padding
-    textAlign: 'center',
-    border: '1px solid #e6e9f0',
-    transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-    cursor: 'pointer',
-    position: 'relative', // needed for the top line pseudo-element
+  aboutImageContainer: {
+    borderRadius: '18px',
     overflow: 'hidden',
+    boxShadow: '0 36px 72px rgba(0, 0, 0, 0.12)',
+    transform: 'rotate(2deg)',
+    transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
   },
   
-  // MUCH taller image wrapper for feature cards
-  featureImageWrapper: {
+  aboutImage: {
     width: '100%',
-    height: '420px', // <- MUCH taller
-    margin: '0 auto 28px auto',
-    borderRadius: '12px',
-    background: '#f3f4f6',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  
-  featureImage: {
-    width: '100%',
-    height: '100%',
+    height: '520px',
     objectFit: 'cover',
     display: 'block',
-    // subtle upscale so images look "a little larger"
-    transform: 'scale(1.02)',
-    transition: 'transform 0.45s ease',
   },
-  
-  featureTitle: {
-    fontSize: '22px',
-    fontWeight: 700,
-    margin: '0 0 12px 0',
-    color: '#1a1a1a',
-  },
-  
-  featureDescription: {
-    fontSize: '16px',
-    color: '#6b7280',
-    margin: 0,
-    lineHeight: 1.6,
-  },
-  
-  about: {
-    padding: '120px 0',
-    backgroundColor: 'white',
-  },
-  
-  aboutContainer: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 24px',
-  },
-  
-  aboutContent: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '72px',
-    alignItems: 'center',
-  },
-  
-  aboutText: {
-    maxWidth: '560px',
-  },
-  
-  aboutTitle: {
-    fontSize: 'clamp(32px, 5vw, 48px)',
-    fontWeight: 700,
-    margin: '0 0 28px 0',
-    lineHeight: 1.15,
-    letterSpacing: '-0.02em',
-    color: '#1a1a1a',
-  },
-  
-  aboutDescription: {
-    marginBottom: '36px',
-  },
-  
-  aboutParagraph: {
-    fontSize: '18px',
-    color: '#6b7280',
-    margin: '0 0 20px 0',
-    lineHeight: 1.7,
-  },
-  
+
   actionButtons: {
     display: 'flex',
     gap: '16px',
@@ -461,66 +386,9 @@ const styles = {
     border: '2px solid #e5e7eb',
     transition: 'all 0.25s ease',
   },
-  
-  aboutImageWrapper: {
-    position: 'relative',
-  },
-  
-  aboutImageContainer: {
-    borderRadius: '18px',
-    overflow: 'hidden',
-    boxShadow: '0 36px 72px rgba(0, 0, 0, 0.12)',
-    transform: 'rotate(2deg)',
-    transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-  },
-  
-  aboutImage: {
-    width: '100%',
-    height: '520px',
-    objectFit: 'cover',
-    display: 'block',
-  },
-  
-  bottomCta: {
-    padding: '120px 0',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    textAlign: 'center',
-    color: 'white',
-  },
-  
-  bottomCtaContent: {
-    maxWidth: '600px',
-    margin: '0 auto',
-    padding: '0 24px',
-  },
-  
-  bottomCtaTitle: {
-    fontSize: '36px',
-    fontWeight: 700,
-    margin: '0 0 16px 0',
-  },
-  
-  bottomCtaText: {
-    fontSize: '20px',
-    margin: '0 0 40px 0',
-    opacity: 0.9,
-  },
-  
-  bottomCtaButton: {
-    display: 'inline-block',
-    padding: '18px 36px',
-    backgroundColor: 'white',
-    color: '#1a1a1a',
-    textDecoration: 'none',
-    borderRadius: '12px',
-    fontSize: '18px',
-    fontWeight: 600,
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.16)',
-  },
 };
 
-// Add CSS keyframes for scroll animation and a few hover/utility classes
+// Add CSS keyframes, services/intro/previous styles and a few hover/utility classes
 const styleSheet = document.createElement("style");
 styleSheet.innerText = `
   @keyframes scroll {
@@ -528,82 +396,299 @@ styleSheet.innerText = `
     50% { opacity: 1; }
     100% { transform: translateY(20px); opacity: 0; }
   }
-  
-  /* Hover effects */
-  .feature-card {
+
+  /* Intro section styles */
+  .intro-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, #f6f9fc 0%, white 100%);
+  }
+
+  .intro-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .intro-text {
+    font-size: 28px;
+    color: #0a2540;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
+
+  .intro-highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+  }
+
+  /* Services / cards styles - updated: make cards nearly full-width & taller */
+  .services-section {
+    padding: 80px 0 120px 0;
+    background: white;
+  }
+
+  .services-container {
+    max-width: 1400px; /* give more room */
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .services-label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #635bff;
+    margin-bottom: 16px;
+  }
+
+  .services-title {
+    font-size: 48px;
+    font-weight: 600;
+    color: #0a2540;
+    letter-spacing: -1px;
+  }
+
+  /* Lay out cards stacked vertically, each card stretches across most of the viewport */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+    align-items: stretch;
+  }
+
+  .service-card {
+    position: relative;
+    background: white;
+    border: 1px solid #e3e8ee;
+    border-radius: 20px;
+    padding: 56px 40px;
+    transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    min-height: 75vh; /* make the whole card taller vertically */
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 40px 90px rgba(99, 91, 255, 0.12);
+    border-color: #635bff;
+  }
+
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* Much larger image block: almost full viewport width feel (but contained by services-container)
+     Height increased so images feel immersive */
+  .service-image-wrapper {
+    width: 100%;
+    height: 72vh; /* very tall image area on desktop */
+    margin: 0 auto 32px auto;
+    border-radius: 14px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.03);
+    transition: transform 0.55s ease;
+  }
+
+  .service-card:hover .service-image {
+    transform: scale(1.07) rotate(0.3deg);
+  }
+
+  .service-icon-container {
+    width: 96px;
+    height: 96px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    font-size: 40px;
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover .service-icon-container {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  .service-name {
+    font-size: 30px;
+    font-weight: 700;
+    color: #0a2540;
+    margin-bottom: 12px;
+  }
+
+  .service-tagline {
+    font-size: 18px;
+    color: #635bff;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .service-description {
+    font-size: 18px;
+    color: #425466;
+    line-height: 1.7;
+    max-width: 1000px;
+  }
+
+  /* Previous / About section styles */
+  .previous-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, #f6f9fc 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .previous-decoration {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99, 91, 255, 0.05) 0%, transparent 70%);
+    top: -300px;
+    right: -300px;
+  }
+
+  .previous-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  .previous-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .previous-label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #635bff;
+    margin-bottom: 16px;
+  }
+
+  .previous-title {
+    font-size: 64px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -2px;
+  }
+
+  .previous-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .previous-text {
+    color: #425466;
+  }
+
+  .previous-text p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .previous-list {
+    list-style: none;
+    padding: 32px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e3e8ee;
+    margin: 32px 0;
+  }
+
+  .previous-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 16px;
+    color: #0a2540;
+  }
+
+  .previous-list li:last-child {
+    border-bottom: none;
+  }
+
+  .previous-list strong {
+    color: #635bff;
+    font-weight: 600;
+  }
+
+  /* Hover effects + responsive tweaks (kept from original) */
+  .service-card {
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
   }
-  .feature-card:hover {
+  .service-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
   }
-  
-  /* Top blue line that animates in on hover */
-  .feature-card::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 6px; /* thickness of the blue line */
-    background: #3b82f6; /* blue-500 */
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    z-index: 6;
+
+  /* Responsive: keep the immersive feeling but reduce heights on smaller screens */
+  @media (max-width: 1400px) {
+    .services-container { max-width: 1100px; }
+    .service-image-wrapper { height: 64vh; }
+    .service-card { min-height: 68vh; padding: 48px 32px; }
   }
-  .feature-card:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
-  }
-  
-  .cta-button:hover svg {
-    transform: translateX(4px);
-  }
-  
-  .primary-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.32);
-  }
-  
-  .secondary-button:hover {
-    border-color: #6b7280;
-    background-color: #f9fafb;
-  }
-  
-  .about-image-container:hover {
-    transform: rotate(0deg);
-  }
-  
-  .bottom-cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.24);
-  }
-  
-  /* Responsive adjustments */
+
   @media (max-width: 1024px) {
-    .features-grid {
-      gap: 28px;
-    }
-    .about-content {
-      grid-template-columns: 1fr;
-      gap: 40px;
-      text-align: center;
-    }
+    .services-grid { grid-template-columns: 1fr; gap: 40px; }
+    .service-image-wrapper { height: 56vh; }
+    .service-card { min-height: 60vh; }
+    .previous-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .action-buttons { justify-content: center; }
   }
 
-  /* Make the feature images responsive: on smaller screens the big height reduces */
   @media (max-width: 800px) {
-    .feature-card::before { border-top-left-radius: 12px; border-top-right-radius: 12px; }
-    .feature-card { padding: 28px 20px 20px 20px !important; }
-    .feature-image-wrapper, .feature-image-wrapper img { height: 280px !important; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 28px 20px 20px 20px !important; min-height: auto; }
+    .service-image-wrapper, .service-image-wrapper img { height: 48vh !important; }
   }
 `;
 

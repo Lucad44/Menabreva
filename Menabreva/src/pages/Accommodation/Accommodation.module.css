@@ -1,76 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-// Import placeholder images - replace with your actual imports
-import KiteHouseEsterno from "../assets/kite_house_esterno.png";
-import KiteHouseLetti from "../assets/kite_house_letti.png";
-import KiteHouseDivani from "../assets/kite_house_divani.png";
-
-const Accommodation = () => {
-  const navigate = useNavigate();
-  const [scrollY, setScrollY] = useState(0);
-  const [activeImage, setActiveImage] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
-  const intervalRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const galleryImages = [
-    { src: KiteHouseEsterno, alt: "Kite House vista esterna", label: "Vista Esterna" },
-    { src: KiteHouseLetti, alt: "Camera da letto confortevole", label: "Camere" },
-    { src: KiteHouseDivani, alt: "Area comune relax", label: "Area Comune" }
-  ];
-
-  // start/stop autoplay effect
-  useEffect(() => {
-    // Clear any existing interval first
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-
-    if (autoPlay) {
-      intervalRef.current = setInterval(() => {
-        setActiveImage(prev => (prev + 1) % galleryImages.length);
-      }, 2000); // 2 seconds
-    }
-
-    // cleanup on unmount or when autoPlay changes
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [autoPlay, galleryImages.length]);
-
-  // helper to stop autoplay when user interacts
-  const stopAutoPlay = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-    setAutoPlay(false);
-  };
-
-  const handleThumbnailClick = (index) => {
-    setActiveImage(index);
-    stopAutoPlay();
-  };
-
-  const handleMainImageClick = () => {
-    // User clicked the main picture — treat as manual interaction and stop autoplay
-    stopAutoPlay();
-  };
-
-  return (
-    <>
-      <style>{`
-        * {
+* {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -327,18 +255,21 @@ const Accommodation = () => {
         }
 
         .service-title {
-          font-size: 28px;
+          font-weight: bold;
+          font-size: 36px;
           font-weight: 600;
           margin-bottom: 12px;
         }
 
         .service-subtitle {
-          font-size: 16px;
+          font-weight: bold;
+          font-size: 21px;
           opacity: 0.9;
           margin-bottom: 20px;
         }
 
         .service-description {
+          color: #ffffff;
           font-size: 17px;
           line-height: 1.6;
           opacity: 0.95;
@@ -516,173 +447,3 @@ const Accommodation = () => {
           .features-grid { grid-template-columns: 1fr; }
           .gallery-thumbnails { grid-template-columns: 1fr; }
         }
-      `}</style>
-
-      <div className="stripe-accommodation">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-gradient"></div>
-          <div className="hero-content">
-            <h1 className="hero-title">Un'Esperienza Completa</h1>
-            <p className="hero-subtitle">
-              Vivi il kitesurf al massimo con il nostro alloggio direttamente sul lago. 
-              Comfort, convenienza e community in un unico posto.
-            </p>
-          </div>
-        </section>
-
-        {/* Gallery Section */}
-        <section className="gallery-section">
-          <div className="gallery-container">
-            <div className="gallery-main" onClick={handleMainImageClick} role="button" tabIndex={0}>
-              <img 
-                className="gallery-image" 
-                src={galleryImages[activeImage].src} 
-                alt={galleryImages[activeImage].alt} 
-              />
-              <div className="gallery-overlay">
-                <h3>{galleryImages[activeImage].label}</h3>
-                <p>La nostra Kite House direttamente sul lago</p>
-              </div>
-            </div>
-            
-            <div className="gallery-thumbnails">
-              {galleryImages.map((image, index) => (
-                <div 
-                  key={index} 
-                  className="thumbnail"
-                  onClick={() => handleThumbnailClick(index)}
-                  style={{ opacity: activeImage === index ? 0.7 : 1 }}
-                >
-                  <img src={image.src} alt={image.alt} />
-                  <div className="thumbnail-overlay">{image.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="services-section">
-          <div className="services-container">
-            <div className="section-header">
-              <div className="section-label">Servizi inclusivi</div>
-              <h2 className="section-title">Tutto Quello Che Ti Serve</h2>
-              <p className="section-description">
-                Dai comfort dell'alloggio alla cucina di qualità, ogni dettaglio è pensato per la tua esperienza
-              </p>
-            </div>
-
-            <div className="services-grid">
-              <div className="service-card">
-                <div className="service-icon">🏠</div>
-                <h3 className="service-title">Alloggio</h3>
-                <p className="service-subtitle">Direttamente sulla spiaggia</p>
-                <p className="service-description">
-                  Dormi a pochi metri dal lago in camere confortevoli e accoglienti.
-                  Letti comodi, spazi comuni per socializzare e tutto quello che ti serve
-                  per sentirti a casa.
-                </p>
-              </div>
-
-              <div className="service-card">
-                <div className="service-icon">🍽️</div>
-                <h3 className="service-title">Ristorazione</h3>
-                <p className="service-subtitle">Cucina locale e internazionale</p>
-                <p className="service-description">
-                  Inizia la giornata con una colazione energetica e concludila con
-                  cene deliziose preparate con ingredienti locali freschi.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="features-section">
-          <div className="features-background"></div>
-          <div className="features-container">
-            <div className="section-header">
-              <div className="section-label">Vantaggi</div>
-              <h2 className="section-title">Perché Scegliere Noi</h2>
-            </div>
-
-            <div className="features-grid">
-              <div className="feature-card">
-                <div className="feature-icon">🚗</div>
-                <h3 className="feature-title">Parcheggio Gratuito</h3>
-                <p className="feature-description">
-                  Parcheggio privato direttamente di fronte alla struttura. Comodo e sicuro per tutta la durata del soggiorno.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">🛏️</div>
-                <h3 className="feature-title">Camere Confortevoli</h3>
-                <p className="feature-description">
-                  Stanze accoglienti con letti comodi, perfette per recuperare le energie dopo le sessioni in acqua.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">👥</div>
-                <h3 className="feature-title">Atmosfera Familiare</h3>
-                <p className="feature-description">
-                  Un ambiente caldo e accogliente dove fare nuove amicizie e condividere la passione per il kitesurf.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">🏄</div>
-                <h3 className="feature-title">Deposito Attrezzature</h3>
-                <p className="feature-description">
-                  Magazzino dedicato per riporre in sicurezza kite, tavole e attrezzature. Spogliatoi sempre disponibili.
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">🌊</div>
-                <h3 className="feature-title">Accesso Diretto al Lago</h3>
-                <p className="feature-description">
-                  Dalla porta di casa all'acqua in meno di 2 minuti. Non c'è niente di più comodo per un kiter!
-                </p>
-              </div>
-
-              <div className="feature-card">
-                <div className="feature-icon">🍳</div>
-                <h3 className="feature-title">Cucina Attrezzata</h3>
-                <p className="feature-description">
-                  Possibilità di preparare i propri pasti o gustare le specialità della nostra cucina locale.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="cta-section">
-          <div className="floating-shapes">
-            <div className="shape shape-1"></div>
-            <div className="shape shape-2"></div>
-          </div>
-          <div className="cta-content">
-            <h2 className="cta-title">Pronto per l'Avventura?</h2>
-            <p className="cta-description">
-              Unisciti a noi per un'esperienza di kitesurf indimenticabile. 
-              Alloggio, cibo e divertimento ti aspettano sul lago.
-            </p>
-            <button
-              className="cta-button"
-              onClick={() => navigate('/contact')}
-              aria-label="Contattaci"
-            >
-              Contattaci
-            </button>
-          </div>
-        </section>
-      </div>
-    </>
-  );
-};
-
-export default Accommodation;

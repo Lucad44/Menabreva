@@ -48,6 +48,13 @@ const Camp = () => {
   const nextSlide = () => goToSlide(slideIndex + 1);
   const prevSlide = () => goToSlide(slideIndex - 1);
 
+  // New handler: scroll down exactly 200px
+  const scrollDown = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollBy({ top: 1277, left: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -684,8 +691,11 @@ const Camp = () => {
               attrezzatura premium e alloggio frontemare
             </p>
             <div className="hero-cta">
-              <button className="hero-button hero-button-primary">Prenota Ora</button>
-              <button className="hero-button hero-button-secondary">Scopri di Più</button>
+              {/* "Prenota ora" now redirects to the Contact page using react-router Link */}
+              <Link to="/contact" className="hero-button hero-button-primary">Prenota ora</Link>
+
+              {/* "Scopri di Più" scrolls down exactly 200px when clicked */}
+              <button className="hero-button hero-button-secondary" onClick={scrollDown}>Scopri di Più</button>
             </div>
           </div>
         </section>
