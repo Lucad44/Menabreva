@@ -28,13 +28,6 @@ const MainPage = () => {
     }
   };
 
-  const handleScrollDown = () => {
-    if (aboutRef.current) {
-      const y = aboutRef.current.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
-    }
-  };
-
   const handleKeyDown = (e, fn) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -56,7 +49,7 @@ const MainPage = () => {
               Prova l'esperienza definitiva di kitesurf da Menabreva
             </p>
 
-            {/* CTA group */}
+            {/* CTA group: Esplora corsi (link) + Scopri di più (scroll exactly below hero) */}
             <div style={styles.heroCtaGroup}>
               <Link to="/courses" style={styles.ctaButton} className="cta-button" aria-label="Esplora corsi">
                 Esplora corsi
@@ -88,38 +81,52 @@ const MainPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section style={styles.features}>
-        <div style={styles.container}>
-          <div style={styles.featuresGrid} className="features-grid">
-            <div style={styles.featureCard} className="feature-card">
-              <div style={styles.featureImageWrapper}>
-                <img src={IstruttoreRadio} alt="Professional Instructors" style={styles.featureImage} />
+      {/* Intro Section (under hero) */}
+      <section className="intro-section" aria-label="Intro descrizione soggiorno">
+        <div className="intro-container">
+          <p className="intro-text">
+            Un soggiorno pensato per chi ama il vento:&nbsp;
+            <span className="intro-highlight">lezioni con istruttori qualificati</span>,&nbsp;
+            <span className="intro-highlight">uscita giornaliera agli spot migliori</span> e&nbsp;
+            <span className="intro-highlight">relax in un alloggio</span> comodo e vicinissimo al lago.
+          </p>
+        </div>
+      </section>
+
+      {/* Services / Features Section (cards updated to 'services' style, images made much larger) */}
+      <section className="services-section" aria-label="Servizi e caratteristiche">
+        <div className="services-container">
+          <div className="services-header">
+            <div className="services-label">Perché scegliere Menabreva</div>
+            <h2 className="services-title">Cosa offriamo</h2>
+          </div>
+
+          <div className="services-grid">
+            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
+              <div className="service-image-wrapper">
+                <img src={IstruttoreRadio} alt="Professional Instructors" className="service-image" />
               </div>
-              <h3 style={styles.featureTitle}>Istruttori esperti</h3>
-              <p style={styles.featureDescription}>
-                Impara da istruttori esperti con 10+ anni di esperienza
-              </p>
+              <h3 className="service-name">Istruttori esperti</h3>
+              <div className="service-tagline">Lezioni dedicate</div>
+              <p className="service-description">Impara da istruttori con anni di esperienza certificata e lezioni personalizzate per il tuo livello.</p>
             </div>
 
-            <div style={styles.featureCard} className="feature-card">
-              <div style={styles.featureImageWrapper}>
-                <img src={LagoKite} alt="Perfect Location" style={styles.featureImage} />
+            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
+              <div className="service-image-wrapper">
+                <img src={LagoKite} alt="Perfect Location" className="service-image" />
               </div>
-              <h3 style={styles.featureTitle}>Condizioni ideali</h3>
-              <p style={styles.featureDescription}>
-                Venti consistenti e onde perfette tutto l'anno
-              </p>
+              <h3 className="service-name">Condizioni ideali</h3>
+              <div className="service-tagline">Spot selezionati</div>
+              <p className="service-description">Venti consistenti e spot scelti giornalmente per darti la migliore esperienza in acqua.</p>
             </div>
 
-            <div style={styles.featureCard} className="feature-card">
-              <div style={styles.featureImageWrapper}>
-                <img src={Barbecue} alt="All Inclusive" style={styles.featureImage} />
+            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
+              <div className="service-image-wrapper">
+                <img src={Barbecue} alt="All Inclusive" className="service-image" />
               </div>
-              <h3 style={styles.featureTitle}>Esperienza completa</h3>
-              <p style={styles.featureDescription}>
-                Concentrati sul kite. Dormi e mangia da noi!
-              </p>
+              <h3 className="service-name">Esperienza completa</h3>
+              <div className="service-tagline">Relax e comfort</div>
+              <p className="service-description">Sistemazioni comode e attività extra per goderti il tempo libero dopo le uscite in mare.</p>
             </div>
           </div>
         </div>
@@ -249,14 +256,6 @@ const styles = {
     maxWidth: '700px',
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-
-  heroDescription: {
-    fontSize: '18px',
-    maxWidth: '780px',
-    margin: '0 auto 18px',
-    color: 'rgba(255,255,255,0.95)',
-    lineHeight: 1.5,
   },
   
   ctaButton: {
@@ -428,16 +427,18 @@ styleSheet.innerText = `
     font-weight: 600;
   }
 
-  /* Services / cards styles - updated: make cards nearly full-width & taller */
+  /* Services / cards styles - updated: keep cards on the same row but make them together span the full viewport width */
   .services-section {
     padding: 80px 0 120px 0;
     background: white;
   }
 
+  /* make the container span the full viewport so the three cards together match screen width */
   .services-container {
-    max-width: 1400px; /* give more room */
-    margin: 0 auto;
-    padding: 0 24px;
+    width: 100vw;
+    max-width: 100%;
+    margin: 0 calc(50% - 50vw); /* neutralize parent centering so it truly spans edge-to-edge */
+    padding: 0 12px;
   }
 
   .services-header {
@@ -461,27 +462,30 @@ styleSheet.innerText = `
     letter-spacing: -1px;
   }
 
-  /* Lay out cards stacked vertically, each card stretches across most of the viewport */
+  /* Keep the three cards on the same row (3 columns). Reduce gaps so the three together fill the screen.
+     Each card will therefore be roughly 1/3 of the viewport width. */
   .services-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 64px;
-    align-items: stretch;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* small gap so combined width ~ viewport */
+    width: calc(100vw - 24px); /* subtract container horizontal padding */
+    margin: 0 auto;
+    align-items: start;
   }
 
   .service-card {
     position: relative;
     background: white;
     border: 1px solid #e3e8ee;
-    border-radius: 20px;
-    padding: 56px 40px;
+    border-radius: 16px;
+    padding: 36px 24px;
     transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: start;
-    min-height: 75vh; /* make the whole card taller vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 78vh; /* taller so cards are visually large */
   }
 
   .service-card::before {
@@ -497,7 +501,7 @@ styleSheet.innerText = `
   }
 
   .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: 0 40px 90px rgba(99, 91, 255, 0.12);
     border-color: #635bff;
   }
@@ -506,13 +510,12 @@ styleSheet.innerText = `
     transform: scaleX(1);
   }
 
-  /* Much larger image block: almost full viewport width feel (but contained by services-container)
-     Height increased so images feel immersive */
+  /* Large image block inside each card. Height is tall so images feel immersive; width is constrained by the grid column. */
   .service-image-wrapper {
     width: 100%;
-    height: 72vh; /* very tall image area on desktop */
-    margin: 0 auto 32px auto;
-    border-radius: 14px;
+    height: 56vh; /* tall but leaves room for title/description */
+    margin: 0 0 24px 0;
+    border-radius: 12px;
     background: #f3f4f6;
     display: flex;
     align-items: center;
@@ -530,18 +533,18 @@ styleSheet.innerText = `
   }
 
   .service-card:hover .service-image {
-    transform: scale(1.07) rotate(0.3deg);
+    transform: scale(1.06) rotate(0.3deg);
   }
 
   .service-icon-container {
-    width: 96px;
-    height: 96px;
+    width: 88px;
+    height: 88px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     font-size: 40px;
     transition: transform 0.4s ease;
   }
@@ -551,27 +554,28 @@ styleSheet.innerText = `
   }
 
   .service-name {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 700;
     color: #0a2540;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .service-tagline {
-    font-size: 18px;
+    font-size: 17px;
     color: #635bff;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-weight: 600;
   }
 
   .service-description {
-    font-size: 18px;
+    font-size: 17px;
     color: #425466;
     line-height: 1.7;
-    max-width: 1000px;
+    margin-top: auto; /* push description to bottom so image/title get prominence */
+    max-width: 100%;
   }
 
-  /* Previous / About section styles */
+  /* Previous / About section styles (unchanged) */
   .previous-section {
     padding: 120px 0;
     background: linear-gradient(180deg, #f6f9fc 0%, #ffffff 100%);
@@ -666,29 +670,25 @@ styleSheet.innerText = `
   .service-card {
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
   }
-  .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
-  }
 
-  /* Responsive: keep the immersive feeling but reduce heights on smaller screens */
   @media (max-width: 1400px) {
-    .services-container { max-width: 1100px; }
-    .service-image-wrapper { height: 64vh; }
-    .service-card { min-height: 68vh; padding: 48px 32px; }
+    .services-container { width: 100vw; padding: 0 10px; }
+    .service-image-wrapper { height: 48vh; }
+    .service-card { min-height: 66vh; padding: 32px 20px; }
   }
 
   @media (max-width: 1024px) {
-    .services-grid { grid-template-columns: 1fr; gap: 40px; }
-    .service-image-wrapper { height: 56vh; }
-    .service-card { min-height: 60vh; }
+    /* On tablet and small laptops keep 3 columns only if there's enough width, otherwise switch to 2 */
+    .services-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; width: calc(100vw - 20px); }
+    .service-image-wrapper { height: 44vh; }
+    .service-card { min-height: auto; }
     .previous-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .action-buttons { justify-content: center; }
   }
 
   @media (max-width: 800px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .service-card { padding: 28px 20px 20px 20px !important; min-height: auto; }
+    .services-grid { grid-template-columns: 1fr; width: calc(100vw - 20px); }
+    .service-card { padding: 20px; min-height: auto; }
     .service-image-wrapper, .service-image-wrapper img { height: 48vh !important; }
   }
 `;
@@ -697,151 +697,5 @@ styleSheet.innerText = `
 if (typeof document !== 'undefined') {
   document.head.appendChild(styleSheet);
 }
-
-// Extra stylesheet: intro-highlight + services styles (user-provided), icons removed, image hover transforms applied
-const extraStyles = document.createElement('style');
-extraStyles.innerText = `
-  /* Intro gradient highlight for important phrases */
-  .intro-highlight {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 600;
-  }
-
-  .hero-below { text-align: center; max-width: 900px; margin: 28px auto; padding: 0 24px; }
-  .hero-below-text { font-size: 18px; color: #0a2540; line-height: 1.6; margin: 0; }
-
-  /* Services Section */
-  .services-section {
-    padding: 100px 0;
-    background: white;
-  }
-
-  .services-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .services-header {
-    text-align: center;
-    margin-bottom: 80px;
-  }
-
-  .services-label {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #635bff;
-    margin-bottom: 16px;
-  }
-
-  .services-title {
-    font-size: 56px;
-    font-weight: 600;
-    color: #0a2540;
-    letter-spacing: -2px;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-
-  .service-card {
-    position: relative;
-    background: white;
-    border: 1px solid #e3e8ee;
-    border-radius: 16px;
-    padding: 48px 32px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(99, 91, 255, 0.2);
-    border-color: #635bff;
-  }
-
-  .service-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  /* Keep images approximately the same size as before */
-  .service-image-wrapper {
-    width: 100%;
-    height: 420px; /* match previous feature image height */
-    margin-bottom: 24px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #f3f4f6;
-    display: block;
-  }
-
-  .service-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-    transform-origin: center center;
-  }
-
-  /* Apply the former icon rotation/scale to the pictures themselves */
-  .service-card:hover .service-image-wrapper img {
-    transform: rotate(5deg) scale(1.05);
-  }
-
-  .service-name {
-    font-size: 24px;
-    font-weight: 600;
-    color: #0a2540;
-    margin-bottom: 8px;
-  }
-
-  .service-tagline {
-    font-size: 16px;
-    color: #635bff;
-    margin-bottom: 16px;
-    font-weight: 500;
-  }
-
-  .service-description {
-    font-size: 16px;
-    color: #425466;
-    line-height: 1.6;
-    margin-top: auto; /* push description to bottom if needed */
-  }
-
-  @media (max-width: 980px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .service-image-wrapper { height: 300px; }
-    .services-title { font-size: 36px; }
-    .hero-below { margin: 18px auto; padding: 0 16px; }
-  }
-`;
-
-if (typeof document !== 'undefined') document.head.appendChild(extraStyles);
 
 export default MainPage;
