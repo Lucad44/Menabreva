@@ -28,6 +28,13 @@ const MainPage = () => {
     }
   };
 
+  const handleScrollDown = () => {
+    if (aboutRef.current) {
+      const y = aboutRef.current.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+    }
+  };
+
   const handleKeyDown = (e, fn) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -49,7 +56,7 @@ const MainPage = () => {
               Prova l'esperienza definitiva di kitesurf da Menabreva
             </p>
 
-            {/* CTA group: Esplora corsi (link) + Scopri di più (scroll exactly below hero) */}
+            {/* CTA group */}
             <div style={styles.heroCtaGroup}>
               <Link to="/courses" style={styles.ctaButton} className="cta-button" aria-label="Esplora corsi">
                 Esplora corsi
@@ -81,52 +88,38 @@ const MainPage = () => {
         </div>
       </section>
 
-      {/* Intro Section (under hero) */}
-      <section className="intro-section" aria-label="Intro descrizione soggiorno">
-        <div className="intro-container">
-          <p className="intro-text">
-            Un soggiorno pensato per chi ama il vento:&nbsp;
-            <span className="intro-highlight">lezioni con istruttori qualificati</span>,&nbsp;
-            <span className="intro-highlight">uscita giornaliera agli spot migliori</span> e&nbsp;
-            <span className="intro-highlight">relax in un alloggio</span> comodo e vicinissimo al lago.
-          </p>
-        </div>
-      </section>
-
-      {/* Services / Features Section (cards updated to 'services' style, images made much larger) */}
-      <section className="services-section" aria-label="Servizi e caratteristiche">
-        <div className="services-container">
-          <div className="services-header">
-            <div className="services-label">Perché scegliere Menabreva</div>
-            <h2 className="services-title">Cosa offriamo</h2>
-          </div>
-
-          <div className="services-grid">
-            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
-              <div className="service-image-wrapper">
-                <img src={IstruttoreRadio} alt="Professional Instructors" className="service-image" />
+      {/* Features Section */}
+      <section style={styles.features}>
+        <div style={styles.container}>
+          <div style={styles.featuresGrid} className="features-grid">
+            <div style={styles.featureCard} className="feature-card">
+              <div style={styles.featureImageWrapper}>
+                <img src={IstruttoreRadio} alt="Professional Instructors" style={styles.featureImage} />
               </div>
-              <h3 className="service-name">Istruttori esperti</h3>
-              <div className="service-tagline">Lezioni dedicate</div>
-              <p className="service-description">Impara da istruttori con anni di esperienza certificata e lezioni personalizzate per il tuo livello.</p>
+              <h3 style={styles.featureTitle}>Istruttori esperti</h3>
+              <p style={styles.featureDescription}>
+                Impara da istruttori esperti con 10+ anni di esperienza
+              </p>
             </div>
 
-            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
-              <div className="service-image-wrapper">
-                <img src={LagoKite} alt="Perfect Location" className="service-image" />
+            <div style={styles.featureCard} className="feature-card">
+              <div style={styles.featureImageWrapper}>
+                <img src={LagoKite} alt="Perfect Location" style={styles.featureImage} />
               </div>
-              <h3 className="service-name">Condizioni ideali</h3>
-              <div className="service-tagline">Spot selezionati</div>
-              <p className="service-description">Venti consistenti e spot scelti giornalmente per darti la migliore esperienza in acqua.</p>
+              <h3 style={styles.featureTitle}>Condizioni ideali</h3>
+              <p style={styles.featureDescription}>
+                Venti consistenti e onde perfette tutto l'anno
+              </p>
             </div>
 
-            <div className="service-card" role="button" tabIndex={0} onKeyDown={(e) => handleKeyDown(e, () => {})}>
-              <div className="service-image-wrapper">
-                <img src={Barbecue} alt="All Inclusive" className="service-image" />
+            <div style={styles.featureCard} className="feature-card">
+              <div style={styles.featureImageWrapper}>
+                <img src={Barbecue} alt="All Inclusive" style={styles.featureImage} />
               </div>
-              <h3 className="service-name">Esperienza completa</h3>
-              <div className="service-tagline">Relax e comfort</div>
-              <p className="service-description">Sistemazioni comode e attività extra per goderti il tempo libero dopo le uscite in mare.</p>
+              <h3 style={styles.featureTitle}>Esperienza completa</h3>
+              <p style={styles.featureDescription}>
+                Concentrati sul kite. Dormi e mangia da noi!
+              </p>
             </div>
           </div>
         </div>
@@ -256,6 +249,14 @@ const styles = {
     maxWidth: '700px',
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+
+  heroDescription: {
+    fontSize: '18px',
+    maxWidth: '780px',
+    margin: '0 auto 18px',
+    color: 'rgba(255,255,255,0.95)',
+    lineHeight: 1.5,
   },
   
   ctaButton: {
@@ -696,5 +697,151 @@ styleSheet.innerText = `
 if (typeof document !== 'undefined') {
   document.head.appendChild(styleSheet);
 }
+
+// Extra stylesheet: intro-highlight + services styles (user-provided), icons removed, image hover transforms applied
+const extraStyles = document.createElement('style');
+extraStyles.innerText = `
+  /* Intro gradient highlight for important phrases */
+  .intro-highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+  }
+
+  .hero-below { text-align: center; max-width: 900px; margin: 28px auto; padding: 0 24px; }
+  .hero-below-text { font-size: 18px; color: #0a2540; line-height: 1.6; margin: 0; }
+
+  /* Services Section */
+  .services-section {
+    padding: 100px 0;
+    background: white;
+  }
+
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .services-label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #635bff;
+    margin-bottom: 16px;
+  }
+
+  .services-title {
+    font-size: 56px;
+    font-weight: 600;
+    color: #0a2540;
+    letter-spacing: -2px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .service-card {
+    position: relative;
+    background: white;
+    border: 1px solid #e3e8ee;
+    border-radius: 16px;
+    padding: 48px 32px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(99, 91, 255, 0.2);
+    border-color: #635bff;
+  }
+
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* Keep images approximately the same size as before */
+  .service-image-wrapper {
+    width: 100%;
+    height: 420px; /* match previous feature image height */
+    margin-bottom: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f3f4f6;
+    display: block;
+  }
+
+  .service-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+    transform-origin: center center;
+  }
+
+  /* Apply the former icon rotation/scale to the pictures themselves */
+  .service-card:hover .service-image-wrapper img {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  .service-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0a2540;
+    margin-bottom: 8px;
+  }
+
+  .service-tagline {
+    font-size: 16px;
+    color: #635bff;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .service-description {
+    font-size: 16px;
+    color: #425466;
+    line-height: 1.6;
+    margin-top: auto; /* push description to bottom if needed */
+  }
+
+  @media (max-width: 980px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-image-wrapper { height: 300px; }
+    .services-title { font-size: 36px; }
+    .hero-below { margin: 18px auto; padding: 0 16px; }
+  }
+`;
+
+if (typeof document !== 'undefined') document.head.appendChild(extraStyles);
 
 export default MainPage;
