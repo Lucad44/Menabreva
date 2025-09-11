@@ -7,7 +7,7 @@ import ScrollToTop from './components/ScrollToTop';
 import MainPage from './pages/MainPage';
 import Courses from './pages/Courses';
 import Accommodation from './pages/Accommodation/Accommodation';
-import Camp from './pages/Camp';
+import Camp from './pages/Camp/Camp';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 

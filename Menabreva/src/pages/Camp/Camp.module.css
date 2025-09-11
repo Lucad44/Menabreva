@@ -1,64 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-// Import assets - replace with your actual imports
-import CampHero from "../assets/camphero.png";
-import TarifaSpiaggia from "../assets/tarifaspiaggia.png";
-import TarifaTramonto from "../assets/tarifatramonto.png";
-import TarifaJump from "../assets/tarifajump.png";
-import TarifaCavo from "../assets/tarifacavo.png";
-import TarifaVerde from "../assets/tarifaverde.png";
-
-const Camp = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const intervalRef = useRef(null);
-  const videoRef = useRef(null);
-
-  const sliderMedia = [
-    { type: 'image', src: TarifaSpiaggia, alt: 'Spiaggia - Tarifa 2022', caption: 'Spiaggia' },
-    { type: 'image', src: TarifaTramonto, alt: 'Tramonto memorabile - Tarifa 2022 ', caption: 'Tramonto memorabile' },
-    { type: 'image', src: TarifaJump, alt: 'Salto con la tavola - Tarifa 2022', caption: 'Salto con la tavola' },
-    { type: 'image', src: TarifaCavo, alt: 'Kitesurfing - Tarifa 2022', caption: 'Kitesurfing' },
-    { type: 'image', src: TarifaVerde, alt: 'Esperienza esotica - Tarifa 2022', caption: 'Esperienza esotica' }
-  ];
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(() => {
-        setSlideIndex(prev => (prev + 1) % sliderMedia.length);
-      }, 4000);
-    }
-    return () => clearInterval(intervalRef.current);
-  }, [isPlaying, sliderMedia.length]);
-
-  const goToSlide = (index) => {
-    setSlideIndex((index + sliderMedia.length) % sliderMedia.length);
-    setIsPlaying(false);
-    clearInterval(intervalRef.current);
-  };
-
-  const nextSlide = () => goToSlide(slideIndex + 1);
-  const prevSlide = () => goToSlide(slideIndex - 1);
-
-  // New handler: scroll down exactly 200px
-  const scrollDown = () => {
-    if (typeof window !== 'undefined') {
-      window.scrollBy({ top: 1277, left: 0, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <>
-      <style>{`
-        * {
+* {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -167,15 +107,19 @@ const Camp = () => {
         }
 
         .hero-button {
-          padding: 16px 32px;
-          border-radius: 8px;
-          font-size: 17px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border: none;
+          display: 'inline-flex';
+          align-items: center;
+          gap: 8px;
+          padding: 14px 28px;
+          background-color: transparent;
+          color: #ffffffff;
           text-decoration: none;
-          display: inline-block;
+          border: 2px solid white;
+          border-radius: 12px;
+          font-size: 18px;
+          font-weight: 700;
+          transition: all 0.25s ease;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
         }
 
         .hero-button-primary {
@@ -195,6 +139,7 @@ const Camp = () => {
         }
 
         .hero-button-secondary:hover {
+          transform: translateY(-2px);
           background: white;
           color: #635bff;
         }
@@ -253,7 +198,7 @@ const Camp = () => {
 
         /* Services Section */
         .services-section {
-          padding: 100px 0;
+          padding: 80px 0;
           background: white;
         }
 
@@ -265,7 +210,7 @@ const Camp = () => {
 
         .services-header {
           text-align: center;
-          margin-bottom: 80px;
+          margin-bottom: 48px;
         }
 
         .services-label {
@@ -274,31 +219,42 @@ const Camp = () => {
           text-transform: uppercase;
           letter-spacing: 1px;
           color: #635bff;
-          margin-bottom: 16px;
+          margin-bottom: 12px;
         }
 
         .services-title {
-          font-size: 56px;
+          font-size: 44px;
           font-weight: 600;
           color: #0a2540;
-          letter-spacing: -2px;
+          letter-spacing: -1px;
         }
 
+        /* Cards: slightly bigger than last iteration, still constrained and centered */
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
+          grid-template-columns: repeat(3, minmax(0, 420px));
+          gap: 28px;
+          justify-content: center;
+          align-items: start;
+          margin: 0 auto;
+          width: 100%;
+          padding: 0 8px;
         }
 
         .service-card {
           position: relative;
           background: white;
           border: 1px solid #e3e8ee;
-          border-radius: 16px;
-          padding: 48px 32px;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          border-radius: 14px;
+          padding: 24px;
+          transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           cursor: pointer;
           overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          max-height: 520px;
+          min-height: 260px;
         }
 
         .service-card::before {
@@ -315,7 +271,7 @@ const Camp = () => {
 
         .service-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 30px 60px rgba(99, 91, 255, 0.2);
+          box-shadow: 0 28px 56px rgba(99, 91, 255, 0.12);
           border-color: #635bff;
         }
 
@@ -324,40 +280,42 @@ const Camp = () => {
         }
 
         .service-icon-container {
-          width: 80px;
-          height: 80px;
+          width: 100px;
+          height: 100px;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border-radius: 16px;
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 32px;
-          font-size: 40px;
-          transition: transform 0.4s ease;
+          margin-bottom: 1;
+          font-size: 48px;
+          transition: transform 0.35s ease;
+          flex: 0 0 auto;
         }
 
         .service-card:hover .service-icon-container {
-          transform: rotate(5deg) scale(1.1);
+          transform: rotate(4deg) scale(1.05);
         }
 
         .service-name {
-          font-size: 24px;
-          font-weight: 600;
+          font-size: 28px;
+          font-weight: 700;
           color: #0a2540;
-          margin-bottom: 8px;
+          margin-bottom: 4px;
         }
 
         .service-tagline {
-          font-size: 16px;
+          font-size: 20px;
           color: #635bff;
-          margin-bottom: 20px;
-          font-weight: 500;
+          margin-bottom: 8px;
+          font-weight: 600;
         }
 
         .service-description {
-          font-size: 16px;
+          font-size: 18px;
           color: #425466;
           line-height: 1.6;
+          overflow: auto;
         }
 
         /* Previous Camp Section */
@@ -660,9 +618,17 @@ const Camp = () => {
           background: rgba(255, 255, 255, 0.1);
         }
 
-        @media (max-width: 968px) {
+        /* RESPONSIVE TWEAKS */
+        @media (max-width: 1100px) {
+          .services-grid {
+            grid-template-columns: repeat(2, minmax(0, 400px));
+            gap: 22px;
+          }
+        }
+
+        @media (max-width: 768px) {
           .hero-title { font-size: 56px; }
-          .services-grid { grid-template-columns: 1fr; }
+          .services-grid { grid-template-columns: 1fr; justify-items: center; gap: 16px; padding: 0 16px; }
           .previous-content { grid-template-columns: 1fr; gap: 48px; }
           .cta-buttons { flex-direction: column; align-items: center; }
         }
@@ -672,169 +638,5 @@ const Camp = () => {
           .services-title { font-size: 36px; }
           .previous-title { font-size: 40px; }
           .cta-title { font-size: 40px; }
+          .service-card { max-height: none; min-height: auto; padding: 16px; }
         }
-      `}</style>
-
-      <div className="stripe-camp">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-background">
-            <img className="hero-image" src={CampHero} alt="Kite Camp Hero" />
-          </div>
-          <div className="hero-gradient-overlay"></div>
-          
-          <div className="hero-content">
-            <div className="hero-badge">Kite Camp 2025</div>
-            <h1 className="hero-title">Vivi il Vento</h1>
-            <p className="hero-subtitle">
-              Un'esperienza completa di kitesurf con lezioni professionali, 
-              attrezzatura premium e alloggio frontemare
-            </p>
-            <div className="hero-cta">
-              {/* "Prenota ora" now redirects to the Contact page using react-router Link */}
-              <Link to="/contact" className="hero-button hero-button-primary">Prenota ora</Link>
-
-              {/* "Scopri di Più" scrolls down exactly 200px when clicked */}
-              <button className="hero-button hero-button-secondary" onClick={scrollDown}>Scopri di Più</button>
-            </div>
-          </div>
-        </section>
-
-        {/* Intro Section */}
-        <section className="intro-section">
-          <div className="intro-container">
-            <p className="intro-text">
-              Un soggiorno pensato per chi ama il vento: <span className="intro-highlight">lezioni con istruttori qualificati</span>,
-              uscita giornaliera agli spot migliori e <span className="intro-highlight">relax in un alloggio comodo</span> e vicino al mare.
-            </p>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="services-section">
-          <div className="services-container">
-            <div className="services-header">
-              <div className="services-label">I Nostri Servizi</div>
-              <h2 className="services-title">Tutto Incluso</h2>
-            </div>
-
-            <div className="services-grid">
-              <div className="service-card">
-                <div className="service-icon-container">🏄‍♀️</div>
-                <h3 className="service-name">Lezioni & Coaching</h3>
-                <p className="service-tagline">Istruttori IKO e coaching personalizzato</p>
-                <p className="service-description">
-                  Programmi giornalieri con lezioni tecniche, video review e strategie per migliorare velocemente.
-                </p>
-              </div>
-
-              <div className="service-card">
-                <div className="service-icon-container">🎒</div>
-                <h3 className="service-name">Noleggio Attrezzatura</h3>
-                <p className="service-tagline">Kite, tavole e accessori di qualità</p>
-                <p className="service-description">
-                  Set completi per tutte le taglie e condizioni di vento. Controlli giornalieri e deposito sicuro.
-                </p>
-              </div>
-
-              <div className="service-card">
-                <div className="service-icon-container">🏠</div>
-                <h3 className="service-name">Alloggio Frontemare</h3>
-                <p className="service-tagline">Camere confortevoli con colazione inclusa</p>
-                <p className="service-description">
-                  Sistemazioni curate a pochi passi dalla spiaggia. Spazi comuni per socializzare.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Previous Camp Section */}
-        <section className="previous-section">
-          <div className="previous-decoration"></div>
-          <div className="previous-container">
-            <div className="previous-header">
-              <div className="previous-label">Camp Precedenti</div>
-              <h2 className="previous-title">Tarifa 2022</h2>
-            </div>
-
-            <div className="previous-content">
-              <div className="previous-text">
-                <p>
-                  Nel 2022 abbiamo organizzato un memorabile Camp a Tarifa, la mecca europea del vento.
-                  Quattro giorni di vento forte, spot iconici e una comunità internazionale di kiters.
-                  Raggruppammo principianti, intermedi e pro, offrendo coaching mirato e serate sociali sulla spiaggia.
-                </p>
-
-                <ul className="previous-list">
-                  <li><strong>Data:</strong> Giugno 2022</li>
-                  <li><strong>Spot:</strong> Playa de los Lances e Valdevaqueros</li>
-                  <li><strong>Punti salienti:</strong> Clinics di foil, downwind guidati e video coaching</li>
-                </ul>
-
-                <p>
-                  Molti partecipanti tornarono con progressi evidenti: primi salti, miglior controllo e nuove amicizie.
-                  Tarifa resta uno dei nostri ricordi più vivi e un benchmark per i nostri futuri Camp.
-                </p>
-              </div>
-
-              <div className="gallery-container">
-                <div className="gallery-slider">
-                  {sliderMedia.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className={`slide ${idx === slideIndex ? 'slide-active' : ''}`}
-                    >
-                      {item.type === 'image' ? (
-                        <img src={item.src} alt={item.alt} />
-                      ) : (
-                        <video
-                          ref={videoRef}
-                          src={item.src}
-                          poster={item.poster}
-                          controls
-                          playsInline
-                          preload="metadata"
-                        />
-                      )}
-                      <div className="slide-caption">{item.caption}</div>
-                    </div>
-                  ))}
-
-                  <div className="gallery-controls">
-                    <button className="gallery-button" onClick={prevSlide}>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M15 18L9 12L15 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                    <button className="gallery-button" onClick={nextSlide}>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 6L15 12L9 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                  </div>
-
-                  <div className="gallery-dots">
-                    {sliderMedia.map((_, i) => (
-                      <button
-                        key={i}
-                        className={`gallery-dot ${i === slideIndex ? 'gallery-dot-active' : ''}`}
-                        onClick={() => goToSlide(i)}
-                      />
-                    ))}
-                  </div>
-
-                  {!isPlaying && (
-                    <div className="gallery-status">Manuale</div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </>
-  );
-};
-
-export default Camp;
