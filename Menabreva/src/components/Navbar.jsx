@@ -6,6 +6,7 @@ import Logo from '../assets/menabreva.png';
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/courses', label: 'Corsi' },
+  { to: '/teacher', label: 'Diventa Istruttore'},
   { to: '/accommodation', label: 'Alloggio' },
   { to: '/camp', label: 'Camp' },
   { to: '/gallery', label: 'Galleria' },
