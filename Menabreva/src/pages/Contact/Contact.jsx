@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
 import styles from './Contact.module.css'
 
@@ -35,7 +36,12 @@ const Contact = () => {
   const osmLink = 'https://maps.app.goo.gl/RauA7tAwagsb8Mkm6'
 
   return (
-    <div className={styles['contact-page']}>
+    <motion.div
+      className={styles['contact-page']}
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
       <main className={styles['main-grid']}>
         <section className={styles['info-panel']} aria-labelledby='info-title'>
           <h2 id='info-title'>Informazioni</h2>
@@ -246,7 +252,7 @@ const Contact = () => {
       <footer className={styles['contact-footer']}>
         <p>© {new Date().getFullYear()} MenaBreva Kite — Lago di Como</p>
       </footer>
-    </div>
+    </motion.div>
   )
 }
 

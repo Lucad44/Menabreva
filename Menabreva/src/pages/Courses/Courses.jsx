@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 import styles from './Courses.module.css'
 
@@ -93,9 +94,12 @@ const Courses = () => {
   }, [open])
 
   return (
-    <div
+    <motion.div
       className={styles['courses-page'] || 'courses-page'}
       aria-live='polite'
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
     >
       <main
         className={styles['courses-categories'] || 'courses-categories'}
@@ -228,7 +232,7 @@ const Courses = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 import styles from './Camp.module.css'
 
@@ -81,233 +82,225 @@ const Camp = () => {
   }
 
   return (
-    <>
-      <div className={styles['stripe-camp']}>
-        <section className={styles['hero-section']}>
-          <div className={styles['hero-background']}>
-            <img
-              className={styles['hero-image']}
-              src={CampHero}
-              alt='Kite Camp Hero'
-            />
-          </div>
-          <div className={styles['hero-gradient-overlay']}></div>
+    <motion.div
+      className={styles['stripe-camp']}
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
+      <section className={styles['hero-section']}>
+        <div className={styles['hero-background']}>
+          <img
+            className={styles['hero-image']}
+            src={CampHero}
+            alt='Kite Camp Hero'
+          />
+        </div>
+        <div className={styles['hero-gradient-overlay']}></div>
 
-          <div className={styles['hero-content']}>
-            <div className={styles['hero-badge']}>Kite Camp 2025</div>
-            <h1 className={styles['hero-title']}>Vivi il Vento</h1>
-            <p className={styles['hero-subtitle']}>
-              Un'esperienza completa di kitesurf con lezioni professionali,
-              attrezzatura premium e alloggio frontemare
-            </p>
-            <div className={styles['hero-cta']}>
-              <Link
-                to='/contact'
-                className={`${styles['hero-button']} ${styles['hero-button-primary']}`}
-              >
-                Prenota ora
-              </Link>
-              <button
-                className={`${styles['hero-button']} ${styles['hero-button-secondary']}`}
-                onClick={scrollDown}
-              >
-                Scopri di Più
-              </button>
-            </div>
+        <div className={styles['hero-content']}>
+          <div className={styles['hero-badge']}>Kite Camp 2025</div>
+          <h1 className={styles['hero-title']}>Vivi il Vento</h1>
+          <p className={styles['hero-subtitle']}>
+            Un'esperienza completa di kitesurf con lezioni professionali,
+            attrezzatura premium e alloggio frontemare
+          </p>
+          <div className={styles['hero-cta']}>
+            <Link
+              to='/contact'
+              className={`${styles['hero-button']} ${styles['hero-button-primary']}`}
+            >
+              Prenota ora
+            </Link>
+            <button
+              className={`${styles['hero-button']} ${styles['hero-button-secondary']}`}
+              onClick={scrollDown}
+            >
+              Scopri di Più
+            </button>
           </div>
-        </section>
-        <section className={styles['intro-section']}>
-          <div className={styles['intro-container']}>
-            <p className={styles['intro-text']}>
-              Un soggiorno pensato per chi ama il vento:{' '}
-              <span className={styles['intro-highlight']}>
-                lezioni con istruttori qualificati
-              </span>
-              , uscita giornaliera agli spot migliori e{' '}
-              <span className={styles['intro-highlight']}>
-                relax in un alloggio comodo
-              </span>{' '}
-              e vicino al mare.
-            </p>
+        </div>
+      </section>
+      <section className={styles['intro-section']}>
+        <div className={styles['intro-container']}>
+          <p className={styles['intro-text']}>
+            Un soggiorno pensato per chi ama il vento:{' '}
+            <span className={styles['intro-highlight']}>
+              lezioni con istruttori qualificati
+            </span>
+            , uscita giornaliera agli spot migliori e{' '}
+            <span className={styles['intro-highlight']}>
+              relax in un alloggio comodo
+            </span>{' '}
+            e vicino al mare.
+          </p>
+        </div>
+      </section>
+      <section className={styles['services-section']}>
+        <div className={styles['services-container']}>
+          <div className={styles['services-header']}>
+            <div className={styles['services-label']}>I Nostri Servizi</div>
+            <h2 className={styles['services-title']}>Tutto Incluso</h2>
           </div>
-        </section>
-        <section className={styles['services-section']}>
-          <div className={styles['services-container']}>
-            <div className={styles['services-header']}>
-              <div className={styles['services-label']}>I Nostri Servizi</div>
-              <h2 className={styles['services-title']}>Tutto Incluso</h2>
-            </div>
 
-            <div className={styles['services-grid']}>
-              <div className={styles['service-card']}>
-                <div className={styles['service-icon-container']}>🏄‍♀️</div>
-                <h3 className={styles['service-name']}>Lezioni & Coaching</h3>
-                <p className={styles['service-tagline']}>
-                  Istruttori IKO e coaching personalizzato
-                </p>
-                <p className={styles['service-description']}>
-                  Programmi giornalieri con lezioni tecniche, video review e
-                  strategie per migliorare velocemente.
-                </p>
-              </div>
-
-              <div className={styles['service-card']}>
-                <div className={styles['service-icon-container']}>🎒</div>
-                <h3 className={styles['service-name']}>
-                  Noleggio Attrezzatura
-                </h3>
-                <p className={styles['service-tagline']}>
-                  Kite, tavole e accessori di qualità⠀⠀⠀⠀⠀
-                </p>
-                <p className={styles['service-description']}>
-                  Set completi per tutte le taglie e condizioni di vento.
-                  Controlli giornalieri e deposito sicuro.
-                </p>
-              </div>
-
-              <div className={styles['service-card']}>
-                <div className={styles['service-icon-container']}>🏠</div>
-                <h3 className={styles['service-name']}>Alloggio Frontemare</h3>
-                <p className={styles['service-tagline']}>
-                  Camere confortevoli con colazione inclusa
-                </p>
-                <p className={styles['service-description']}>
-                  Sistemazioni curate a pochi passi dalla spiaggia. Spazi comuni
-                  per socializzare.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className={styles['previous-section']}>
-          <div className={styles['previous-decoration']}></div>
-          <div className={styles['previous-container']}>
-            <div className={styles['previous-header']}>
-              <div className={styles['previous-label']}>Camp Precedenti</div>
-              <h2 className={styles['previous-title']}>Tarifa 2022</h2>
+          <div className={styles['services-grid']}>
+            <div className={styles['service-card']}>
+              <div className={styles['service-icon-container']}>🏄‍♀️</div>
+              <h3 className={styles['service-name']}>Lezioni & Coaching</h3>
+              <p className={styles['service-tagline']}>
+                Istruttori IKO e coaching personalizzato
+              </p>
+              <p className={styles['service-description']}>
+                Programmi giornalieri con lezioni tecniche, video review e
+                strategie per migliorare velocemente.
+              </p>
             </div>
 
-            <div className={styles['previous-content']}>
-              <div className={styles['previous-text']}>
-                <p>
-                  Nel 2022 abbiamo organizzato un memorabile Camp a Tarifa, la
-                  mecca europea del vento. Quattro giorni di vento forte, spot
-                  iconici e una comunità internazionale di kiters. Raggruppammo
-                  principianti, intermedi e pro, offrendo coaching mirato e
-                  serate sociali sulla spiaggia.
-                </p>
+            <div className={styles['service-card']}>
+              <div className={styles['service-icon-container']}>🎒</div>
+              <h3 className={styles['service-name']}>Noleggio Attrezzatura</h3>
+              <p className={styles['service-tagline']}>
+                Kite, tavole e accessori di qualità⠀⠀⠀⠀⠀
+              </p>
+              <p className={styles['service-description']}>
+                Set completi per tutte le taglie e condizioni di vento.
+                Controlli giornalieri e deposito sicuro.
+              </p>
+            </div>
 
-                <ul className={styles['previous-list']}>
-                  <li>
-                    <strong>Data:</strong> Giugno 2022
-                  </li>
-                  <li>
-                    <strong>Spot:</strong> Playa de los Lances e Valdevaqueros
-                  </li>
-                  <li>
-                    <strong>Punti salienti:</strong> Clinics di foil, downwind
-                    guidati e video coaching
-                  </li>
-                </ul>
+            <div className={styles['service-card']}>
+              <div className={styles['service-icon-container']}>🏠</div>
+              <h3 className={styles['service-name']}>Alloggio Frontemare</h3>
+              <p className={styles['service-tagline']}>
+                Camere confortevoli con colazione inclusa
+              </p>
+              <p className={styles['service-description']}>
+                Sistemazioni curate a pochi passi dalla spiaggia. Spazi comuni
+                per socializzare.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className={styles['previous-section']}>
+        <div className={styles['previous-decoration']}></div>
+        <div className={styles['previous-container']}>
+          <div className={styles['previous-header']}>
+            <div className={styles['previous-label']}>Camp Precedenti</div>
+            <h2 className={styles['previous-title']}>Tarifa 2022</h2>
+          </div>
 
-                <p>
-                  Molti partecipanti tornarono con progressi evidenti: primi
-                  salti, miglior controllo e nuove amicizie. Tarifa resta uno
-                  dei nostri ricordi più vivi e un benchmark per i nostri futuri
-                  Camp.
-                </p>
-              </div>
+          <div className={styles['previous-content']}>
+            <div className={styles['previous-text']}>
+              <p>
+                Nel 2022 abbiamo organizzato un memorabile Camp a Tarifa, la
+                mecca europea del vento. Quattro giorni di vento forte, spot
+                iconici e una comunità internazionale di kiters. Raggruppammo
+                principianti, intermedi e pro, offrendo coaching mirato e serate
+                sociali sulla spiaggia.
+              </p>
 
-              <div className={styles['gallery-container']}>
-                <div className={styles['gallery-slider']}>
-                  {sliderMedia.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className={`${styles['slide']} ${
-                        idx === slideIndex ? styles['slide-active'] : ''
-                      }`}
-                    >
-                      {item.type === 'image' ? (
-                        <img src={item.src} alt={item.alt} />
-                      ) : (
-                        <video
-                          ref={videoRef}
-                          src={item.src}
-                          poster={item.poster}
-                          controls
-                          playsInline
-                          preload='metadata'
-                        />
-                      )}
-                      <div className={styles['slide-caption']}>
-                        {item.caption}
-                      </div>
-                    </div>
-                  ))}
+              <ul className={styles['previous-list']}>
+                <li>
+                  <strong>Data:</strong> Giugno 2022
+                </li>
+                <li>
+                  <strong>Spot:</strong> Playa de los Lances e Valdevaqueros
+                </li>
+                <li>
+                  <strong>Punti salienti:</strong> Clinics di foil, downwind
+                  guidati e video coaching
+                </li>
+              </ul>
 
-                  <div className={styles['gallery-controls']}>
-                    <button
-                      className={styles['gallery-button']}
-                      onClick={prevSlide}
-                      aria-label='Previous slide'
-                    >
-                      <svg
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        stroke='currentColor'
-                      >
-                        <path
-                          d='M15 18L9 12L15 6'
-                          strokeWidth='2'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
-                    </button>
+              <p>
+                Molti partecipanti tornarono con progressi evidenti: primi
+                salti, miglior controllo e nuove amicizie. Tarifa resta uno dei
+                nostri ricordi più vivi e un benchmark per i nostri futuri Camp.
+              </p>
+            </div>
 
-                    <button
-                      className={styles['gallery-button']}
-                      onClick={nextSlide}
-                      aria-label='Next slide'
-                    >
-                      <svg
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        stroke='currentColor'
-                      >
-                        <path
-                          d='M9 6L15 12L9 18'
-                          strokeWidth='2'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <div className={styles['gallery-dots']}>
-                    {sliderMedia.map((_, i) => (
-                      <button
-                        key={i}
-                        className={`${styles['gallery-dot']} ${
-                          i === slideIndex ? styles['gallery-dot-active'] : ''
-                        }`}
-                        onClick={() => goToSlide(i)}
-                        aria-label={`Go to slide ${i + 1}`}
+            <div className={styles['gallery-container']}>
+              <div className={styles['gallery-slider']}>
+                {sliderMedia.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`${styles['slide']} ${
+                      idx === slideIndex ? styles['slide-active'] : ''
+                    }`}
+                  >
+                    {item.type === 'image' ? (
+                      <img src={item.src} alt={item.alt} />
+                    ) : (
+                      <video
+                        ref={videoRef}
+                        src={item.src}
+                        poster={item.poster}
+                        controls
+                        playsInline
+                        preload='metadata'
                       />
-                    ))}
+                    )}
+                    <div className={styles['slide-caption']}>
+                      {item.caption}
+                    </div>
                   </div>
+                ))}
 
-                  {!isPlaying && (
-                    <div className={styles['gallery-status']}>Manuale</div>
-                  )}
+                <div className={styles['gallery-controls']}>
+                  <button
+                    className={styles['gallery-button']}
+                    onClick={prevSlide}
+                    aria-label='Previous slide'
+                  >
+                    <svg viewBox='0 0 24 24' fill='none' stroke='currentColor'>
+                      <path
+                        d='M15 18L9 12L15 6'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+                  </button>
+
+                  <button
+                    className={styles['gallery-button']}
+                    onClick={nextSlide}
+                    aria-label='Next slide'
+                  >
+                    <svg viewBox='0 0 24 24' fill='none' stroke='currentColor'>
+                      <path
+                        d='M9 6L15 12L9 18'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+                  </button>
                 </div>
+
+                <div className={styles['gallery-dots']}>
+                  {sliderMedia.map((_, i) => (
+                    <button
+                      key={i}
+                      className={`${styles['gallery-dot']} ${
+                        i === slideIndex ? styles['gallery-dot-active'] : ''
+                      }`}
+                      onClick={() => goToSlide(i)}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {!isPlaying && (
+                  <div className={styles['gallery-status']}>Manuale</div>
+                )}
               </div>
             </div>
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+    </motion.div>
   )
 }
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+
 import styles from './Teacher.module.css'
 
 import IstruttoriFermi from '../../assets/istruttorifermi.png'
@@ -62,7 +64,12 @@ const Teacher = () => {
   }
 
   return (
-    <div className={styles.root}>
+    <motion.div
+      className={styles.root}
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
       <section className={styles.hero}>
         <div className={styles.inner}>
           <div className={styles.heroContent}>
@@ -227,7 +234,7 @@ const Teacher = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   )
 }
 

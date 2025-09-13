@@ -4,12 +4,8 @@ import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
-import MainPage from './pages/MainPage/MainPage'
-import Courses from './pages/Courses/Courses'
-import Teacher from './pages/Teacher/Teacher'
-import Accommodation from './pages/Accommodation/Accommodation'
-import Camp from './pages/Camp/Camp'
-import Contact from './pages/Contact//Contact'
+
+import AnimatedRoutes from './components/AnimatedRoutes'
 
 function App () {
   useEffect(() => {
@@ -21,14 +17,7 @@ function App () {
       <ScrollToTop />
       <div className='App'>
         <Navbar />
-        <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/courses' element={<Courses />} />
-          <Route path='/teacher' element={<Teacher />} />
-          <Route path='/accommodation' element={<Accommodation />} />
-          <Route path='/camp' element={<Camp />} />
-          <Route path='/contact' element={<Contact />} />
-        </Routes>
+        <AnimatedRoutes />
         <Footer />
       </div>
     </Router>

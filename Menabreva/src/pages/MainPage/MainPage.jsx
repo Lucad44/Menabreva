@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 import styles from './MainPage.module.css'
 
@@ -28,7 +29,12 @@ const MainPage = () => {
   }
 
   return (
-    <div className={styles['container']}>
+    <motion.div
+      className={styles['container']}
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
       <section
         ref={heroRef}
         className={styles['hero']}
@@ -278,7 +284,7 @@ const MainPage = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   )
 }
 
