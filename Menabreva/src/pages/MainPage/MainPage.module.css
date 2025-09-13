@@ -64,7 +64,7 @@
 }
 
 .hero-subtitle {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 400;
   margin: 0 0 20px 0;
   opacity: 0.95;
@@ -80,7 +80,7 @@
   padding: 14px 28px;
   text-decoration: none;
   border-radius: 12px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   transition: transform 220ms cubic-bezier(.2, .9, .2, 1), box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
   cursor: pointer;
@@ -276,7 +276,7 @@
 }
 
 .intro-text {
-  font-size: 28px;
+  font-size: 30px;
   color: #0a2540;
   line-height: 1.5;
   font-weight: 400;
@@ -329,7 +329,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  width: calc(100vw - 24px);
+  width: calc(80vw - 24px);
   margin: 0 auto;
   align-items: start;
 }
@@ -414,21 +414,21 @@
 }
 
 .service-name {
-  font-size: 26px;
+  font-size: 36px;
   font-weight: 700;
   color: #0a2540;
   margin-bottom: 8px;
 }
 
 .service-tagline {
-  font-size: 17px;
+  font-size: 28px;
   color: #635bff;
   margin-bottom: 16px;
   font-weight: 600;
 }
 
 .service-description {
-  font-size: 17px;
+  font-size: 22px;
   color: #425466;
   line-height: 1.7;
   margin-top: auto;
@@ -495,7 +495,7 @@
 }
 
 .previous-text p {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.7;
   margin-bottom: 24px;
 }
@@ -512,7 +512,7 @@
 .previous-list li {
   padding: 12px 0;
   border-bottom: 1px solid #f0f0f0;
-  font-size: 16px;
+  font-size: 20px;
   color: #0a2540;
 }
 

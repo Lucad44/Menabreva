@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import styles from './MainPage.module.css'
 
-import IstruttoreRadio from '../../assets/istruttore_radio.png'
+import VelaInAcqua from '../../assets/vela_in_acqua.png'
 import LagoKite from '../../assets/lago.png'
 import Barbecue from '../../assets/barbecue.png'
 import Villaggio from '../../assets/kite_villaggio.png'
@@ -153,7 +153,7 @@ const MainPage = () => {
             >
               <div className={styles['service-image-wrapper']}>
                 <img
-                  src={IstruttoreRadio}
+                  src={Villaggio}
                   alt='Professional Instructors'
                   className={styles['service-image']}
                 />
@@ -269,7 +269,7 @@ const MainPage = () => {
             <div>
               <div className={styles['about-image-container']}>
                 <img
-                  src={Villaggio}
+                  src={VelaInAcqua}
                   alt='Kitesurfing action'
                   className={styles['about-image']}
                 />

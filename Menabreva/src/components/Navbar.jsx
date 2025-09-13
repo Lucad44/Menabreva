@@ -9,7 +9,6 @@ const links = [
   { to: '/teacher', label: 'Diventa Istruttore'},
   { to: '/accommodation', label: 'Alloggio' },
   { to: '/camp', label: 'Camp' },
-  { to: '/gallery', label: 'Galleria' },
   { to: '/contact', label: 'Contatti' },
 ];
 
