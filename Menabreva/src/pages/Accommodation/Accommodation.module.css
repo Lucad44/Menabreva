@@ -17,13 +17,19 @@ body {
 }
 
 .hero-section {
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: flex-start;  /* keeps the block near the top — change to center to vertically center */
+  flex-direction: column;   /* ensures content stacks vertically */
+  width: 100%;
   position: relative;
   padding: 120px 0 80px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   overflow: hidden;
+  text-align: center;
 }
-
 .hero-gradient {
+  text-align: center;
   position: absolute;
   width: 200%;
   height: 200%;
@@ -48,14 +54,21 @@ body {
 }
 
 .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centers the h1 / p inside this container */
+  justify-content: center;
   max-width: 1200px;
-  margin: 0 auto;
+  width: min(100%, 1200px); /* keeps it responsive but not wider than max */
+  margin: 0 auto;          /* extra safety for centering */
   padding: 0 24px;
   position: relative;
   z-index: 2;
 }
 
+
 .hero-title {
+  text-align: center;
   font-size: 72px;
   font-weight: 600;
   color: #ffffff;
@@ -65,6 +78,7 @@ body {
 }
 
 .hero-subtitle {
+  text-align: center;
   font-size: 21px;
   color: rgba(255, 255, 255, 0.9);
   max-width: 600px;

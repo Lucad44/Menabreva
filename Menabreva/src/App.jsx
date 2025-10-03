@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
 import ScrollToTop from './components/ScrollToTop'
 
 import AnimatedRoutes from './components/AnimatedRoutes'

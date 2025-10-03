@@ -154,7 +154,7 @@ const Accommodation = () => {
 
             <div className={styles['service-card']}>
               <div className={styles['service-icon']}>🍽️</div>
-              <h3 className={styles['service-title']}>Ristorazione</h3>
+              <h3 className={styles['service-title']}>Ristoro</h3>
               <p className={styles['service-subtitle']}>
                 Cucina locale e internazionale
               </p>

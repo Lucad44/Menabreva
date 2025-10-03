@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 
 import styles from './Contact.module.css'
 
@@ -7,6 +8,7 @@ import FacebookLogo from '../../assets/facebook.png'
 import InstagramLogo from '../../assets/instagram.png'
 
 const Contact = () => {
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -19,16 +21,41 @@ const Contact = () => {
     setForm({ ...form, [e.target.id]: e.target.value })
   }
 
-  const handleSubmit = e => {
+  useEffect(() => {
+    emailjs.init('Eulcy4XJ_w7LMiTe3')
+  }, [])
+
+  const handleSubmit = async e => {
     e.preventDefault()
+
     if (!form.name || !form.email || !form.message) {
       setStatus('error')
       setTimeout(() => setStatus(null), 4000)
       return
     }
-    setStatus('success')
-    setForm({ name: '', email: '', subject: '', message: '' })
-    setTimeout(() => setStatus(null), 4000)
+
+    setStatus('sending')
+
+    const date = new Date();
+    const templateParams = {
+      name: form.name,
+      time: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
+      email: form.email,
+      subject: form.subject || '(no subject)',
+      message: form.message
+    }
+
+    try {
+      await emailjs.send('service_2p9h9uq', 'template_d04x2qe', templateParams)
+
+      setStatus('success')
+      setForm({ name: '', email: '', subject: '', message: '' })
+    } catch (err) {
+      console.error('Email send error:', err)
+      setStatus('error')
+    } finally {
+      setTimeout(() => setStatus(null), 4000)
+    }
   }
 
   const osmEmbedSrc =
@@ -182,12 +209,12 @@ const Contact = () => {
             </div>
 
             {status === 'success' && (
-              <div className={styles['toast success']}>
+              <div className={`${styles['toast']} ${styles['success']}`}>
                 Grazie! Il tuo messaggio è stato inviato.
               </div>
             )}
             {status === 'error' && (
-              <div className={styles['toast error']}>
+              <div className={`${styles['toast']} ${styles['error']}`}>
                 Compila almeno nome, email e messaggio.
               </div>
             )}

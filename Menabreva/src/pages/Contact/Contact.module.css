@@ -165,9 +165,9 @@
   padding: 8px 12px
 }
 
-
 .contact-page .toast {
-  margin-top: 12px;
+  font-size: 25px;
+  margin-top: 25px;
   padding: 10px 12px;
   border-radius: 8px;
   font-weight: 600;
